@@ -1,57 +1,45 @@
 <template>
-  <div class="min-h-screen bg-slate-950 text-white">
+  <div class="min-h-screen bg-[#f1f0e9] text-[#1f2521]">
     <NavbarPage />
 
     <main class="mx-auto max-w-4xl px-6 pb-24 pt-20 sm:px-8 lg:px-12">
-      <section class="mb-10">
-        <div class="video-frame-fade mx-auto w-full max-w-[1280px] overflow-hidden rounded-[22px] opacity-0 shadow-lg shadow-black/15">
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            class="h-[240px] w-full object-cover sm:h-[320px] lg:h-[480px]"
-          >
-              <source src="/mition.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </section>
+     
 
       <section class="flex min-h-[32vh] items-end pb-16">
         <div class="max-w-3xl">
-          <p class="text-sm uppercase tracking-[0.18em] text-white/70">Editor / Visual Storyteller</p>
-          <h1 class="mt-4 text-4xl font-light leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+          <p class="text-sm uppercase tracking-[0.18em] text-[#70786f]">Editor / Visual Storyteller</p>
+          <h1 class="mt-4 text-4xl font-light leading-[0.95] tracking-[-0.04em] text-[#1f2521] sm:text-5xl lg:text-6xl">
             I turn footage into stories.
           </h1>
         </div>
       </section>
 
       <section id="about" class="pb-16 pt-12">
-        <p class="text-base leading-8 text-white/80 sm:text-lg">
+        <p class="text-base leading-8 text-[#1f2521]/80 sm:text-lg">
           Editing, for me, is more than cutting clips together. It's about finding the rhythm of a story — knowing when to move quickly, when to slow down, and when to let a moment breathe.
         </p>
 
-        <p class="mt-6 text-base leading-8 text-white/80 sm:text-lg">
+        <p class="mt-6 text-base leading-8 text-[#1f2521]/80 sm:text-lg">
           My work includes short documentaries, educational films, music videos, and advertisements. Every project gives me a different story to understand and a different visual language to explore.
         </p>
 
-        <p class="mt-6 text-base leading-8 text-white/80 sm:text-lg">
+        <p class="mt-6 text-base leading-8 text-[#1f2521]/80 sm:text-lg">
           I'm always looking for ways to make a video feel more natural, engaging, and memorable.
         </p>
       </section>
 
       <section id="contact" class="pb-10 pt-8">
-        <div class="rounded-[24px] border border-white/10 bg-white/5 p-6 sm:p-8">
-          <p class="text-sm uppercase tracking-[0.2em] text-white/60">Contact</p>
+        <div class="rounded-[24px] border border-[#1f2521]/10 bg-white/35 p-6 sm:p-8">
+          <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Contact</p>
 
           <div class="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h2 class="text-2xl font-light tracking-[-0.04em] text-white sm:text-3xl">
+              <h2 class="text-2xl font-light tracking-[-0.04em] text-[#1f2521] sm:text-3xl">
                 Let’s build something worth watching.
               </h2>
               <a
                 href="mailto:aangelevski6@gmail.com"
-                class="mt-4 inline-block text-base text-white/80 underline decoration-white/30 underline-offset-4 transition hover:text-white"
+                class="mt-4 inline-block text-base text-[#1f2521]/80 underline decoration-[#1f2521]/30 underline-offset-4 transition hover:text-[#1f2521]"
               >
                 aangelevski6@gmail.com
               </a>
@@ -59,37 +47,37 @@
 
             <form class="w-full max-w-xl">
               <div class="grid gap-4 sm:grid-cols-2">
-                <label class="block text-sm text-white/60 sm:col-span-1">
+                <label class="block text-sm text-[#70786f] sm:col-span-1">
                   <span class="mb-2 block">Name</span>
                   <input
                     type="text"
                     placeholder="Your name"
-                    class="w-full rounded-full border border-white/10 bg-slate-900/80 px-4 py-3 text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none"
+                    class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-4 py-3 text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
                   />
                 </label>
 
-                <label class="block text-sm text-white/60 sm:col-span-1">
+                <label class="block text-sm text-[#70786f] sm:col-span-1">
                   <span class="mb-2 block">Email</span>
                   <input
                     type="email"
                     placeholder="Your email"
-                    class="w-full rounded-full border border-white/10 bg-slate-900/80 px-4 py-3 text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none"
+                    class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-4 py-3 text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
                   />
                 </label>
 
-                <label class="block text-sm text-white/60 sm:col-span-2">
+                <label class="block text-sm text-[#70786f] sm:col-span-2">
                   <span class="mb-2 block">Project</span>
                   <textarea
                     rows="4"
                     placeholder="Tell me about your idea"
-                    class="w-full resize-none rounded-[20px] border border-white/10 bg-slate-900/80 px-4 py-3 text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none"
+                    class="w-full resize-none rounded-[20px] border border-[#1f2521]/15 bg-white/70 px-4 py-3 text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
                   />
                 </label>
               </div>
 
               <button
                 type="submit"
-                class="mt-5 inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-medium text-slate-900 transition hover:bg-white/90"
+                class="mt-5 inline-flex items-center justify-center rounded-full border border-[#1f2521]/15 bg-[#1f2521] px-5 py-3 text-sm font-medium text-[#f1f0e9] transition hover:bg-[#1f2521]/90"
               >
                 Send inquiry
               </button>
