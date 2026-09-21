@@ -7,9 +7,9 @@
       <NuxtLink to="/projects" class="rounded-full px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 hover:text-white sm:text-xs">
         Projects
       </NuxtLink>
-      <NuxtLink to="/contact" class="rounded-full px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 hover:text-white sm:text-xs">
+      <a href="#contact" class="rounded-full px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 hover:text-white sm:text-xs">
         Contact
-      </NuxtLink>
+      </a>
     </div>
   </nav>
 </template>
