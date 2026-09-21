@@ -7,55 +7,29 @@
 
         <section class="projects-intro">
             <p class="eyebrow">Selected work</p>
-            <h1>Projects</h1>
-            <p class="intro-copy">A moving selection of recent work, experiments, and visual studies.</p>
+            <h1>Selected Work</h1>
+            <p class="intro-copy">A selection of video editing projects across advertising, music, documentary, and digital media..</p>
         </section>
 
-        <section class="slider" aria-label="Project videos">
-            <div class="slider-header">
-                <p class="slide-count">{{ String(activeIndex + 1).padStart(2, '0') }} / {{ String(projectVideos.length).padStart(2, '0') }}</p>
-                <div class="slider-controls">
-                    <button type="button" aria-label="Previous project" class="slider-button" @click="showPrevious">
-                        <span aria-hidden="true">&#8592;</span>
-                    </button>
-                    <button type="button" aria-label="Next project" class="slider-button" @click="showNext">
-                        <span aria-hidden="true">&#8594;</span>
-                    </button>
+        <section class="video-grid" aria-label="Project videos">
+            <article v-for="(video, index) in projectVideos" :key="video" class="video-card">
+                <div class="video-frame">
+                    <iframe
+                        :src="getEmbedUrl(video)"
+                        :title="`Project video ${index + 1}`"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        class="youtube-iframe"
+                    ></iframe>
                 </div>
-            </div>
-
-            <div class="video-container">
-                <iframe
-                    :src="embedUrl"
-                    :title="`Project video ${activeIndex + 1}`"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    class="youtube-iframe"
-                ></iframe>
-            </div>
-
-            <div class="slider-footer">
-                <div class="slider-dots" aria-label="Choose a project video">
-                    <button
-                        v-for="(video, index) in projectVideos"
-                        :key="video"
-                        type="button"
-                        :class="['slider-dot', { active: activeIndex === index }]"
-                        :aria-label="`Show project video ${index + 1}`"
-                        :aria-current="activeIndex === index ? 'true' : undefined"
-                        @click="activeIndex = index"
-                    ></button>
-                </div>
-                <p class="slide-label">Project film {{ String(activeIndex + 1).padStart(2, '0') }}</p>
-            </div>
+                <p class="video-label">Project film {{ String(index + 1).padStart(2, '0') }}</p>
+            </article>
         </section>
     </main>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-
 const projectVideos = [
     'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
     'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
@@ -72,31 +46,22 @@ const projectVideos = [
     'https://youtu.be/4BC-v0qtKkM?si=MgC-4ZhRu1glQ0up',
 ]
 
-const activeIndex = ref(0)
-const rawYoutubeUrl = computed(() => projectVideos[activeIndex.value])
-
-// Turn the active YouTube link into a privacy-friendly embed link.
-const embedUrl = computed(() => {
-    const url = rawYoutubeUrl.value
-    let videoId = ''
-
+function getEmbedUrl(url: string) {
     if (url.includes('watch?v=')) {
-        videoId = url.split('watch?v=')[1]?.split('&')[0] ?? ''
-    } else if (url.includes('youtu.be/')) {
-        videoId = url.split('youtu.be/')[1]?.split('?')[0] ?? ''
-    } else if (url.includes('embed/')) {
+        const videoId = url.split('watch?v=')[1]?.split('&')[0] ?? ''
+        return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`
+    }
+
+    if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1]?.split('?')[0] ?? ''
+        return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`
+    }
+
+    if (url.includes('embed/')) {
         return url
     }
 
-    return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`
-})
-
-function showPrevious() {
-    activeIndex.value = (activeIndex.value - 1 + projectVideos.length) % projectVideos.length
-}
-
-function showNext() {
-    activeIndex.value = (activeIndex.value + 1) % projectVideos.length
+    return url
 }
 </script>
 
@@ -167,55 +132,28 @@ h1 {
     line-height: 1.6;
 }
 
-.slider {
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
     max-width: 54rem;
     margin: 0 auto;
 }
 
-.slider-header,
-.slider-footer {
+.video-card {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
-.slider-header {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--line);
-}
-
-.slider-controls {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.slider-button {
-    display: grid;
-    width: 2.75rem;
-    height: 2.75rem;
-    cursor: pointer;
-    place-items: center;
-    border: 1px solid var(--ink);
-    border-radius: 50%;
-    color: var(--ink);
-    background: transparent;
-    font-size: 1.1rem;
-    transition: color 180ms ease, background 180ms ease, transform 180ms ease;
-}
-
-.slider-button:hover {
-    color: #fff;
-    background: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-}
-
-.video-container {
+.video-frame {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    border-radius: 1rem;
     background: #111;
+    box-shadow: 0 12px 24px rgba(31, 37, 33, 0.08);
 }
 
 .youtube-iframe {
@@ -226,29 +164,13 @@ h1 {
     border: 0;
 }
 
-.slider-footer {
-    padding-top: 1.25rem;
-}
-
-.slider-dots {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-}
-
-.slider-dot {
-    width: 2.5rem;
-    height: 0.25rem;
-    padding: 0;
-    cursor: pointer;
-    border: 0;
-    background: var(--line);
-    transition: background 180ms ease, width 180ms ease;
-}
-
-.slider-dot.active {
-    width: 4rem;
-    background: var(--accent);
+.video-label {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 @media (max-width: 640px) {
@@ -273,32 +195,8 @@ h1 {
         margin: 1.25rem 0 0;
     }
 
-    .slider-header {
-        padding-bottom: 0.75rem;
-    }
-
-    .slider-button {
-        width: 2.25rem;
-        height: 2.25rem;
-        font-size: 0.95rem;
-    }
-
-    .slider-footer {
-        align-items: flex-start;
-        gap: 1rem;
-        flex-direction: column;
-    }
-
-    .slider-dots {
-        gap: 0.4rem;
-    }
-
-    .slider-dot {
-        width: 1.5rem;
-    }
-
-    .slider-dot.active {
-        width: 2.5rem;
+    .video-grid {
+        grid-template-columns: 1fr;
     }
 }
 
