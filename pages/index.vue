@@ -30,6 +30,12 @@
         </div>
       </section>
 
+      <div class="my-8 flex items-center justify-center gap-4">
+        <div class="h-px w-24 bg-[#1f2521]/80"></div>
+        <div class="divider-ornament h-12 w-[4px] bg-[#ef6d3f] opacity-100"></div>
+        <div class="h-px w-24 bg-[#1f2521]/80"></div>
+      </div>
+
       <section id="about" class="about-section pb-16 pt-12">
         <h2 class="about-title mb-6 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">ABOUT ME</h2>
 
@@ -128,7 +134,7 @@
         <div class="rounded-[30px] border border-[#1f2521]/10 bg-[#f0eee9] p-6 sm:p-8">
           <div class="mb-6">
             <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Services</p>
-            <h2 class="mt-2 text-3xl font-light tracking-[-0.04em] text-[#1f2521] sm:text-4xl">Video editing packages</h2>
+            <h2 class="mt-2 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">Video editing packages</h2>
           </div>
 
           <div class="grid gap-5 md:grid-cols-3">
@@ -358,14 +364,15 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 0;
   top: 0;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3.2vw, 3rem);
   line-height: 0.9;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: 'Arial Black', 'Segoe UI', sans-serif;
   color: rgba(239, 109, 63, 0.18);
-  -webkit-text-stroke: 1.5px rgba(239, 109, 63, 0.9);
-  text-shadow: 0 0 0 rgba(239, 109, 63, 0.25);
+  -webkit-text-stroke: 1.2px rgba(239, 109, 63, 0.8);
+  text-shadow: 0 0 0 rgba(239, 109, 63, 0.2);
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.9s ease, transform 0.9s ease, color 0.9s ease;
@@ -376,7 +383,7 @@ onBeforeUnmount(() => {
   opacity: 1;
   transform: translateY(0);
   color: #ef6d3f;
-  -webkit-text-stroke: 2px rgba(239, 109, 63, 1);
+  -webkit-text-stroke: 1.8px rgba(239, 109, 63, 1);
 }
 
 .video-fade {
@@ -390,5 +397,19 @@ onBeforeUnmount(() => {
 .show-video,
 .show-video-frame {
   opacity: 1;
+}
+
+.divider-ornament {
+  animation: divider-sway 1.4s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes divider-sway {
+  0% {
+    transform: translateX(-14px) scaleY(0.9);
+  }
+  100% {
+    transform: translateX(14px) scaleY(1.12);
+  }
 }
 </style>
