@@ -12,16 +12,14 @@ const handleLanguageChange = (event: Event) => {
   }
 }
 
-const isNavVisible = ref(true)
+const isScrolled = ref(false)
 const isMenuOpen = ref(false)
-let lastScrollY = 0
 
 const handleScroll = () => {
   const currentScrollY = window.scrollY
 
-  isNavVisible.value = currentScrollY < 40 || currentScrollY < lastScrollY
+  isScrolled.value = currentScrollY > 40
   if (currentScrollY > 40) isMenuOpen.value = false
-  lastScrollY = currentScrollY
 }
 
 function closeMenu() {
@@ -29,7 +27,7 @@ function closeMenu() {
 }
 
 onMounted(() => {
-  lastScrollY = window.scrollY
+  isScrolled.value = window.scrollY > 40
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
@@ -50,21 +48,21 @@ onBeforeUnmount(() => {
   <nav
     aria-label="Main navigation"
     :class="[
-      'fixed right-4 top-4 z-50 transition-all duration-500 ease-out sm:right-6 sm:top-6',
-      isNavVisible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
+      'fixed right-4 top-4 z-50 transition-colors duration-500 sm:right-6 sm:top-6',
+      isScrolled ? 'text-[#d96842]' : 'text-[#1f2521]'
     ]"
   >
     <div
       :class="[
-        'flex flex-col items-stretch gap-1 rounded-[20px] border p-1 shadow-[0_12px_30px_rgba(239,109,63,0.12)] backdrop-blur-md transition-all duration-500 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full',
-        isNavVisible
-          ? 'border-[#ef6d3f]/25 bg-[#f6eee8]/80'
-          : 'border-[#ef6d3f]/40 bg-[#ef6d3f]/80'
+        'flex items-stretch gap-1 border p-1 shadow-[0_12px_30px_rgba(239,109,63,0.12)] transition-all duration-500',
+        isScrolled
+          ? 'flex-col rounded-[20px] border-transparent bg-transparent shadow-none'
+          : 'flex-col rounded-[20px] border-[#ef6d3f]/25 bg-[#f6eee8]/80 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full'
       ]"
     >
       <button
         type="button"
-        class="flex h-10 w-10 items-center justify-center self-end rounded-full text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:hidden"
+        class="flex h-10 w-10 items-center justify-center self-end rounded-full transition hover:text-[#ef6d3f] sm:hidden"
         aria-label="Toggle navigation menu"
         :aria-expanded="isMenuOpen"
         @click="isMenuOpen = !isMenuOpen"
@@ -76,17 +74,23 @@ onBeforeUnmount(() => {
         </span>
       </button>
 
-      <div :class="[isMenuOpen ? 'flex' : 'hidden', 'flex-col gap-1 sm:flex sm:flex-row sm:items-center sm:gap-2']">
-        <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(31,37,33,0.85)]" @click="closeMenu">
+      <div
+        :class="[
+          isMenuOpen || isScrolled ? 'flex' : 'hidden',
+          'flex-col gap-1 sm:flex sm:items-center sm:gap-2',
+          isScrolled ? 'sm:items-stretch' : 'sm:flex-row'
+        ]"
+      >
+        <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
           {{ t('navAbout') }}
         </a>
-        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
           {{ t('navServices') }}
         </NuxtLink>
-        <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+        <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
           {{ t('navProjects') }}
         </NuxtLink>
-        <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+        <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
           {{ t('navContact') }}
         </a>
       </div>
@@ -96,7 +100,10 @@ onBeforeUnmount(() => {
         id="language-select"
         :value="locale"
         @change="handleLanguageChange"
-        class="h-9 appearance-none rounded-full border border-[#1f2521]/15 bg-[#f8f4ef] px-3 pr-8 text-[10px] font-bold uppercase tracking-[0.18em] text-[#1f2521] transition hover:border-[#d96842] hover:text-[#d96842] focus:outline-none"
+        :class="[
+          'h-9 appearance-none rounded-full border border-current px-3 pr-8 text-[10px] font-bold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] focus:outline-none',
+          isScrolled ? 'bg-transparent' : 'bg-[#f8f4ef]'
+        ]"
         aria-label="Select language"
       >
         <option value="en">EN</option>
