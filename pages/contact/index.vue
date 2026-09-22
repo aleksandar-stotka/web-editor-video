@@ -50,6 +50,7 @@
                                 <option value="Short-Form">Short-Form</option>
                                 <option value="YouTube & Corporate">YouTube & Corporate</option>
                                 <option value="Documentary & Custom">Documentary & Custom</option>
+                                <option value="Custom Production">Custom Production</option>
                             </select>
                         </label>
 
