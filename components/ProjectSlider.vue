@@ -2,8 +2,7 @@
   <section id="projects" class="pb-16 pt-8">
     <div class="mb-6 flex items-end justify-between gap-4">
       <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Selected work</p>
-        <h2 class="mt-2 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">SELECTED WORK</h2>
+        <h2 class="text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">SELECTED WORK</h2>
       </div>
       <NuxtLink
         to="/#projects"

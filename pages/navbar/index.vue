@@ -28,6 +28,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <NuxtLink
+    to="/"
+    class="fixed left-4 top-4 z-50 text-base font-bold uppercase tracking-[0.16em] text-[#1f2521] transition hover:text-[#d96842] sm:left-6 sm:top-6 sm:text-lg"
+  >
+    <span class="storyline-mark">STORYLINE</span>
+    <span class="font-normal normal-case tracking-[0.04em] text-[#d96842]">studio</span>
+  </NuxtLink>
+
   <nav
     aria-label="Main navigation"
     :class="[
@@ -74,4 +82,14 @@ onBeforeUnmount(() => {
     </div>
   </nav>
 </template>
+
+<style scoped>
+.storyline-mark {
+  display: inline-block;
+  font-size: 1.12em;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px #1f2521;
+}
+</style>
 

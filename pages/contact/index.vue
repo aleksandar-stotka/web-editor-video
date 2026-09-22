@@ -86,6 +86,13 @@
     <footer class="border-t border-[#1f2521]/15 bg-[#e8e5dc] px-6 py-14 sm:px-8 lg:px-12">
         <div class="mx-auto flex max-w-4xl flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
+                <a
+                    href="/"
+                    class="inline-block text-base font-bold uppercase tracking-[0.16em] text-[#1f2521] transition hover:text-[#d96842] sm:text-lg"
+                >
+                    <span class="footer-storyline-mark">STORYLINE</span>
+                    <span class="font-normal normal-case tracking-[0.04em] text-[#d96842]">studio</span>
+                </a>
                 <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#d96842]">Available for calls</p>
                 <p class="mt-3 text-base text-[#1f2521]/70">Let’s talk about your next video project.</p>
             </div>
@@ -108,6 +115,15 @@
         </div>
     </footer>
 </template>
+
+<style scoped>
+.footer-storyline-mark {
+    font-size: 1.12em;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px #1f2521;
+}
+</style>
 
 <script setup>
 import { ref, watch } from 'vue';

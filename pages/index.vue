@@ -18,7 +18,7 @@
       <section class="flex min-h-[32vh] items-end pb-16">
         <div class="max-w-3xl">
           <p class="text-sm uppercase tracking-[0.18em] text-[#70786f]">Editor / Visual Storyteller</p>
-          <h1 class="mt-4 text-4xl font-light leading-[0.95] tracking-[-0.04em] text-[#1f2521] sm:text-5xl lg:text-6xl">
+          <h1 class="mt-4 text-3xl font-light leading-[0.95] tracking-[-0.04em] text-[#1f2521] sm:text-4xl lg:text-5xl">
             I turn footage into stories.
           </h1>
 
@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 0;
   top: 0;
-  font-size: clamp(1.5rem, 3.2vw, 3rem);
+  font-size: clamp(1.35rem, 2.8vw, 2.5rem);
   line-height: 0.9;
   font-weight: 900;
   letter-spacing: 0.08em;
