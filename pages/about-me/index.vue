@@ -1,44 +1,35 @@
 <template>
   <section class="about-me-page">
     <div class="container">
-      <h1>About Me</h1>
+      <h1>{{ t('aboutPageTitle') }}</h1>
 
       <p>
-        I’m a Video Editor focused on creating engaging, polished and story-driven
-        content for advertising, music, documentaries and digital media.
+        {{ t('aboutPageP1') }}
       </p>
 
       <p>
-        My main focus is video editing, with experience in
-        <strong>DaVinci Resolve, Adobe Premiere Pro and After Effects</strong>,
-        including editing, color grading, motion graphics and visual effects.
+        {{ t('aboutPageP2') }}
       </p>
 
       <p>
-        Before focusing on video editing, I also gained experience in
-        <strong>web development</strong>, working with modern web technologies and
-        building websites. This background gave me a strong understanding of digital
-        media and helped me develop a technical and creative approach to my work.
+        {{ t('aboutPageP3') }}
       </p>
 
       <p>
-        Today, my primary focus is
-        <strong>video editing and visual storytelling</strong>. I enjoy turning raw
-        footage into videos that communicate an idea, create emotion and keep the
-        viewer engaged.
+        {{ t('aboutPageP4') }}
       </p>
 
       <p>
-        I’m continuously developing my skills and looking for opportunities to work
-        with <strong>businesses, agencies, artists and creative teams</strong> on
-        professional video projects.
+        {{ t('aboutPageP5') }}
       </p>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// About me page
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 </script>
 
 <style scoped>

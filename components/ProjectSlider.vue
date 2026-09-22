@@ -2,13 +2,13 @@
   <section id="projects" class="pb-16 pt-8">
     <div class="mb-6 flex items-end justify-between gap-4">
       <div>
-        <h2 class="text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">SELECTED WORK</h2>
+        <h2 class="text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">{{ t('navProjects').toUpperCase() }}</h2>
       </div>
       <NuxtLink
         to="/#projects"
         class="text-xs font-semibold uppercase tracking-[0.14em] text-[#70786f] transition hover:text-[#d96842]"
       >
-        View all
+        {{ t('projectViewAll') }}
       </NuxtLink>
     </div>
 
@@ -27,7 +27,7 @@
           >
             &#8592;
           </button>
-          <span class="click-hint" aria-hidden="true">Click for More ✦</span>
+          <span class="click-hint" aria-hidden="true">{{ t('projectHint') }}</span>
           <button
             type="button"
             aria-label="Next project"
@@ -67,7 +67,7 @@
         </div>
 
         <p class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[#70786f]">
-          Project film {{ String(activeIndex + 1).padStart(2, '0') }}
+          {{ t('projectFilm') }} {{ String(activeIndex + 1).padStart(2, '0') }}
         </p>
       </div>
     </div>
@@ -76,6 +76,9 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 const projectVideos = [
   'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',

@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t, locale } = useLanguage()
+
+const handleLanguageChange = (event: Event) => {
+  const value = (event.target as HTMLSelectElement).value
+
+  if (value === 'en' || value === 'mk') {
+    locale.value = value
+  }
+}
 
 const isNavVisible = ref(true)
 const isMenuOpen = ref(false)
@@ -66,19 +77,31 @@ onBeforeUnmount(() => {
       </button>
 
       <div :class="[isMenuOpen ? 'flex' : 'hidden', 'flex-col gap-1 sm:flex sm:flex-row sm:items-center sm:gap-2']">
-      <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(31,37,33,0.85)]" @click="closeMenu">
-        About Me
-      </a>
-      <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
-        Services
-      </NuxtLink>
-      <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
-        Selected Work
-      </NuxtLink>
-      <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
-        Contact
-      </a>
+        <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(31,37,33,0.85)]" @click="closeMenu">
+          {{ t('navAbout') }}
+        </a>
+        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+          {{ t('navServices') }}
+        </NuxtLink>
+        <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+          {{ t('navProjects') }}
+        </NuxtLink>
+        <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
+          {{ t('navContact') }}
+        </a>
       </div>
+
+      <label class="sr-only" for="language-select">Language</label>
+      <select
+        id="language-select"
+        :value="locale"
+        @change="handleLanguageChange"
+        class="h-9 appearance-none rounded-full border border-[#1f2521]/15 bg-[#f8f4ef] px-3 pr-8 text-[10px] font-bold uppercase tracking-[0.18em] text-[#1f2521] transition hover:border-[#d96842] hover:text-[#d96842] focus:outline-none"
+        aria-label="Select language"
+      >
+        <option value="en">EN</option>
+        <option value="mk">MK</option>
+      </select>
     </div>
   </nav>
 </template>

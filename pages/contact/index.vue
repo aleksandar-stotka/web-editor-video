@@ -1,12 +1,12 @@
 <template>
     <section id="contact" class="pb-10 pt-8">
         <div class="rounded-[24px] border border-[#1f2521]/10 p-6 sm:p-8">
-            <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Contact</p>
+            <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">{{ t('navContact') }}</p>
 
             <div class="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                     <h2 class="text-2xl font-light tracking-[-0.04em] text-[#1f2521] sm:text-3xl">
-                        Let’s build something worth watching.
+                        {{ t('contactTitle') }}
                     </h2>
                     <a
                         href="mailto:aangelevski6@gmail.com"
@@ -19,48 +19,48 @@
                 <form @submit.prevent="submitForm" class="w-full max-w-xl">
                     <div class="grid gap-5 sm:grid-cols-2">
                         <label class="block text-sm text-[#1f2521] sm:col-span-1">
-                            <span class="mb-2 block text-base text-[#1f2521]">Name</span>
+                            <span class="mb-2 block text-base text-[#1f2521]">{{ t('contactName') }}</span>
                             <input
                                 v-model="form.name"
                                 type="text"
                                 required
-                                placeholder="Your name"
+                                :placeholder="t('contactNamePlaceholder')"
                                 class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#d96842]/70 focus:border-[#d96842] focus:outline-none"
                             />
                         </label>
 
                         <label class="block text-sm text-[#1f2521] sm:col-span-1">
-                            <span class="mb-2 block text-base text-[#1f2521]">Your Email</span>
+                            <span class="mb-2 block text-base text-[#1f2521]">{{ t('contactEmail') }}</span>
                             <input
                                 v-model="form.email"
                                 type="email"
                                 required
-                                placeholder="Your Email"
+                                :placeholder="t('contactEmailPlaceholder')"
                                 class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#d96842]/70 focus:border-[#d96842] focus:outline-none"
                             />
                         </label>
 
                         <label class="block text-sm text-[#1f2521] sm:col-span-2">
-                            <span class="mb-2 block text-base text-[#1f2521]">Choose a package</span>
+                            <span class="mb-2 block text-base text-[#1f2521]">{{ t('contactPackage') }}</span>
                             <select
                                 v-model="form.service"
                                 class="w-full appearance-none rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] focus:border-[#d96842] focus:outline-none"
                             >
-                                <option disabled value="">Select a service</option>
-                                <option value="Short-Form">Short-Form</option>
-                                <option value="YouTube & Corporate">YouTube & Corporate</option>
-                                <option value="Documentary & Custom">Documentary & Custom</option>
-                                <option value="Custom Production">Custom Production</option>
+                                <option disabled value="">{{ t('contactSelectDefault') }}</option>
+                                <option value="Short-Form">{{ t('selectOptionShort') }}</option>
+                                <option value="YouTube & Corporate">{{ t('selectOptionYoutube') }}</option>
+                                <option value="Documentary & Custom">{{ t('selectOptionCustom') }}</option>
+                                <option value="My Materials Production">{{ t('selectOptionMyMaterials') }}</option>
                             </select>
                         </label>
 
                         <label class="block text-sm text-[#1f2521] sm:col-span-2">
-                            <span class="mb-2 block text-base text-[#1f2521]">Project</span>
+                            <span class="mb-2 block text-base text-[#1f2521]">{{ t('contactProject') }}</span>
                             <textarea
                                 v-model="form.message"
                                 required
                                 rows="5"
-                                placeholder="Tell me about your idea"
+                                :placeholder="t('contactProjectPlaceholder')"
                                 class="w-full resize-none rounded-[22px] border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#d96842]/70 focus:border-[#d96842] focus:outline-none"
                             />
                         </label>
@@ -71,8 +71,8 @@
                         :disabled="isSubmitting"
                         class="mt-6 inline-flex items-center justify-center rounded-full border border-[#1f2521]/15 bg-[#1f2521] px-6 py-3.5 text-base font-medium text-[#f1f0e9] transition hover:bg-[#1f2521]/90 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        <span v-if="isSubmitting">Sending...</span>
-                        <span v-else>Send inquiry</span>
+                        <span v-if="isSubmitting">{{ t('contactSending') }}</span>
+                        <span v-else>{{ t('contactSend') }}</span>
                     </button>
 
                     <!-- Feedback message below the button -->
@@ -94,8 +94,8 @@
                     <span class="footer-storyline-mark">STORYLINE</span>
                     <span class="font-normal normal-case tracking-[0.04em] text-[#d96842]">studio</span>
                 </a>
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#d96842]">Available for calls</p>
-                <p class="mt-3 text-base text-[#1f2521]/70">Let’s talk about your next video project.</p>
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#d96842]">{{ t('contactAvailable') }}</p>
+                <p class="mt-3 text-base text-[#1f2521]/70">{{ t('footerText') }}</p>
             </div>
 
             <div class="flex flex-col items-start gap-4 sm:items-end">
@@ -128,8 +128,10 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useLanguage } from '~/composables/useLanguage'
 
 const route = useRoute();
+const { t, locale } = useLanguage();
 
 const form = ref({
   name: '',
@@ -155,8 +157,9 @@ watch(
 watch(
     () => form.value.service,
     (service) => {
-        if (service && (!form.value.message || form.value.message.startsWith('I’m interested in the '))) {
-            form.value.message = `I’m interested in the ${service} package.`;
+        if (service && (!form.value.message || form.value.message.startsWith('I’m interested in the ') || form.value.message.startsWith('Сум заинтересиран за '))) {
+            const prefix = locale.value === 'mk' ? 'Сум заинтересиран за ' : 'I’m interested in the ';
+            form.value.message = `${prefix}${service} package.`;
         }
     }
 );

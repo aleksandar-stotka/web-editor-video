@@ -13,13 +13,11 @@
     </button>
 
     <main class="mx-auto max-w-4xl px-6 pb-24 pt-20 sm:px-8 lg:px-12">
-     
-
       <section class="flex min-h-[32vh] items-end pb-16">
         <div class="max-w-3xl">
-          <p class="text-sm uppercase tracking-[0.18em] text-[#70786f]">Editor / Visual Storyteller</p>
+          <p class="text-sm uppercase tracking-[0.18em] text-[#70786f]">{{ t('heroTag') }}</p>
           <h1 class="mt-4 text-3xl font-light leading-[0.95] tracking-[-0.04em] text-[#1f2521] sm:text-4xl lg:text-5xl">
-            I turn footage into stories.
+            {{ t('heroTitle') }}
           </h1>
 
           <div class="rotating-words mt-5" aria-live="polite">
@@ -37,22 +35,22 @@
       </div>
 
       <section id="about" class="about-section pb-16 pt-12">
-        <h2 class="about-title mb-6 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">ABOUT ME</h2>
+        <h2 class="about-title mb-6 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">{{ t('aboutTitle') }}</h2>
 
         <p class="about-copy text-base leading-8 text-[#1f2521]/80 sm:text-lg">
-          I’m a Video Editor focused on creating engaging, polished, and story-driven content for commercials, music videos, documentaries, and digital media.
+          {{ t('aboutP1') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#1f2521]/80 sm:text-lg">
-          My primary expertise is post-production using <strong>Adobe Premiere Pro, After Effects, and DaVinci Resolve</strong>, covering everything from assembly and color grading to motion graphics and visual effects.
+          {{ t('aboutP2') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#1f2521]/80 sm:text-lg">
-          Before dedicating myself fully to video editing, I built a foundation in web development, working with modern web technologies to build responsive sites. This background gives me a distinct technical edge—allowing me to combine creative visual storytelling with a deep understanding of digital media formats, web integration, and technical asset management.
+          {{ t('aboutP3') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#1f2521]/80 sm:text-lg">
-          Today, my focus is entirely on visual storytelling: turning raw footage into compelling videos that evoke emotion, communicate ideas clearly, and hold audience attention. I am always looking to collaborate with businesses, agencies, artists, and creative teams on ambitious video projects.
+          {{ t('aboutP4') }}
         </p>
       </section>
 
@@ -66,19 +64,15 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useLanguage } from '~/composables/useLanguage'
 import ContactPage from './contact/index.vue'
 import NavbarPage from './navbar/index.vue'
 import ProjectSlider from '../components/ProjectSlider.vue'
 import ServicesSection from '../components/ServicesSection.vue'
 
-const rotatingWords = [
-  'ADVERTISING',
-  'MUSIC VIDEOS',
-  'DOCUMENTARIES',
-  'SOCIAL MEDIA',
-  'COLOR GRADING',
-]
+const { t } = useLanguage()
+const rotatingWords = computed(() => t('heroWords') as string[])
 
 const activeWordIndex = ref(0)
 const showBackToTop = ref(false)
@@ -107,7 +101,7 @@ onMounted(() => {
   window.addEventListener('scroll', updateBackToTopVisibility)
 
   wordTimer = setInterval(() => {
-    activeWordIndex.value = (activeWordIndex.value + 1) % rotatingWords.length
+    activeWordIndex.value = (activeWordIndex.value + 1) % rotatingWords.value.length
   }, 1800)
 })
 
