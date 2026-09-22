@@ -1,18 +1,76 @@
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const isNavVisible = ref(true)
+const isMenuOpen = ref(false)
+let lastScrollY = 0
+
+const handleScroll = () => {
+  const currentScrollY = window.scrollY
+
+  isNavVisible.value = currentScrollY < 40 || currentScrollY < lastScrollY
+  if (currentScrollY > 40) isMenuOpen.value = false
+  lastScrollY = currentScrollY
+}
+
+function closeMenu() {
+  isMenuOpen.value = false
+}
+
+onMounted(() => {
+  lastScrollY = window.scrollY
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+</script>
+
 <template>
-  <nav aria-label="Main navigation" class="fixed right-4 top-4 z-50 sm:right-6 sm:top-6">
-    <div class="flex items-center justify-between gap-2 rounded-full p-1">
-      <a href="#about" class="rounded-full px-3 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(31,37,33,0.85)]">
+  <nav
+    aria-label="Main navigation"
+    :class="[
+      'fixed right-4 top-4 z-50 transition-all duration-500 ease-out sm:right-6 sm:top-6',
+      isNavVisible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
+    ]"
+  >
+    <div
+      :class="[
+        'flex flex-col items-stretch gap-1 rounded-[20px] border p-1 shadow-[0_12px_30px_rgba(239,109,63,0.12)] backdrop-blur-md transition-all duration-500 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full',
+        isNavVisible
+          ? 'border-[#ef6d3f]/25 bg-[#f6eee8]/80'
+          : 'border-[#ef6d3f]/40 bg-[#ef6d3f]/80'
+      ]"
+    >
+      <button
+        type="button"
+        class="flex h-10 w-10 items-center justify-center self-end rounded-full text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:hidden"
+        aria-label="Toggle navigation menu"
+        :aria-expanded="isMenuOpen"
+        @click="isMenuOpen = !isMenuOpen"
+      >
+        <span class="flex flex-col gap-1" aria-hidden="true">
+          <span class="h-0.5 w-5 bg-current transition" :class="isMenuOpen ? 'translate-y-1.5 rotate-45' : ''"></span>
+          <span class="h-0.5 w-5 bg-current transition" :class="isMenuOpen ? 'opacity-0' : ''"></span>
+          <span class="h-0.5 w-5 bg-current transition" :class="isMenuOpen ? '-translate-y-1.5 -rotate-45' : ''"></span>
+        </span>
+      </button>
+
+      <div :class="[isMenuOpen ? 'flex' : 'hidden', 'flex-col gap-1 sm:flex sm:flex-row sm:items-center sm:gap-2']">
+      <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2521] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(31,37,33,0.85)]" @click="closeMenu">
         About Me
       </a>
-      <NuxtLink to="/#services" class="rounded-full px-3 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]">
+      <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
         Services
       </NuxtLink>
-      <NuxtLink to="/projects" class="rounded-full px-3 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]">
+      <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
         Selected Work
       </NuxtLink>
-      <a href="#contact" class="rounded-full px-3 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]">
+      <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2a2f2d] transition hover:bg-[#ef6d3f]/90 hover:text-white sm:text-sm [-webkit-text-stroke:0.8px_rgba(42,47,45,0.7)]" @click="closeMenu">
         Contact
       </a>
+      </div>
     </div>
   </nav>
 </template>

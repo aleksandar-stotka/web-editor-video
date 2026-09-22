@@ -56,189 +56,21 @@
         </p>
       </section>
 
-      <section id="projects" class="pb-16 pt-8">
-        <div class="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Selected work</p>
-            <h2 class="mt-2 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">SELECTED WORK</h2>
-          </div>
-          <NuxtLink
-            to="/projects"
-            class="text-xs font-semibold uppercase tracking-[0.14em] text-[#70786f] transition hover:text-[#d96842]"
-          >
-            View all
-          </NuxtLink>
-        </div>
+      <ProjectSlider />
 
-        <div class="rounded-[24px] border border-[#1f2521]/10 bg-white/35 p-4 sm:p-6">
-          <div class="mb-4 flex items-center justify-between gap-4 border-b border-[#1f2521]/10 pb-3">
-            <p class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[#70786f]">
-              {{ String(activeIndex + 1).padStart(2, '0') }} / {{ String(projectVideos.length).padStart(2, '0') }}
-            </p>
+      <ServicesSection />
 
-            <div class="flex gap-2">
-              <button
-                type="button"
-                aria-label="Previous project"
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-[#1f2521] bg-transparent text-lg text-[#1f2521] transition hover:bg-[#d96842] hover:text-white"
-                @click="showPrevious"
-              >
-                &#8592;
-              </button>
-              <button
-                type="button"
-                aria-label="Next project"
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-[#1f2521] bg-transparent text-lg text-[#1f2521] transition hover:bg-[#d96842] hover:text-white"
-                @click="showNext"
-              >
-                &#8594;
-              </button>
-            </div>
-          </div>
-
-          <div class="relative aspect-video overflow-hidden rounded-[18px] bg-[#111111]">
-            <iframe
-              :src="embedUrl"
-              :title="`Project video ${activeIndex + 1}`"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              class="absolute inset-0 h-full w-full"
-            ></iframe>
-          </div>
-
-          <div class="mt-4 flex items-center justify-between gap-4">
-            <div class="flex flex-wrap gap-2">
-              <button
-                v-for="(video, index) in projectVideos"
-                :key="video"
-                type="button"
-                :class="[
-                  'h-1.5 rounded-full transition-all',
-                  activeIndex === index ? 'w-16 bg-[#d96842]' : 'w-8 bg-[#d9ddd5]'
-                ]"
-                :aria-label="`Show project video ${index + 1}`"
-                :aria-current="activeIndex === index ? 'true' : undefined"
-                @click="activeIndex = index"
-              ></button>
-            </div>
-
-            <p class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[#70786f]">
-              Project film {{ String(activeIndex + 1).padStart(2, '0') }}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="pb-16 pt-8">
-        <div class="rounded-[30px] border border-[#1f2521]/10 bg-[#f0eee9] p-6 sm:p-8">
-          <div class="mb-6">
-            <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Services</p>
-            <h2 class="mt-2 text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">Video editing packages</h2>
-          </div>
-
-          <div class="grid gap-5 md:grid-cols-3">
-            <div class="rounded-[24px] border border-[#1f2521]/10 bg-[#2a2f2d] p-5 text-[#f1f0e9]">
-              <h3 class="text-xl font-bold">Short-Form</h3>
-              <p class="mt-2 text-sm text-[#f1f0e9]/70">Fast, punchy edits built for Reels, Shorts and social-first content.</p>
-              <div class="mt-5 text-3xl font-black text-[#d96842]">From $35</div>
-              <ul class="mt-4 space-y-2 text-sm text-[#f1f0e9]/75">
-                <li>✓ Dynamic cuts</li>
-                <li>✓ Captions & sound</li>
-                <li>✓ Social-ready exports</li>
-              </ul>
-            </div>
-
-            <div class="rounded-[24px] border-2 border-[#d96842] bg-[#2a2f2d] p-5 text-[#f1f0e9] shadow-lg shadow-[#d96842]/10">
-              <span class="inline-block rounded-full bg-[#d96842] px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-[#f1f0e9]">Popular</span>
-              <h3 class="mt-3 text-xl font-bold">YouTube & Corporate</h3>
-              <p class="mt-2 text-sm text-[#f1f0e9]/70">Brand videos, interviews and polished long-form edits for digital channels.</p>
-              <div class="mt-5 text-3xl font-black text-[#d96842]">From $150</div>
-              <ul class="mt-4 space-y-2 text-sm text-[#f1f0e9]/75">
-                <li>✓ Audio cleanup</li>
-                <li>✓ Graphic elements</li>
-                <li>✓ Color grading</li>
-              </ul>
-            </div>
-
-            <div class="rounded-[24px] border border-[#1f2521]/10 bg-[#2a2f2d] p-5 text-[#f1f0e9]">
-              <h3 class="text-xl font-bold">Documentary & Custom</h3>
-              <p class="mt-2 text-sm text-[#f1f0e9]/70">Tailored storytelling for premium branded work and cinematic documentary-style edits.</p>
-              <div class="mt-5 text-3xl font-black text-[#d96842]">Custom</div>
-              <ul class="mt-4 space-y-2 text-sm text-[#f1f0e9]/75">
-                <li>✓ Narrative structure</li>
-                <li>✓ Motion design</li>
-                <li>✓ Full VFX pass</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="pb-10 pt-8">
-        <div class="rounded-[24px] border border-[#1f2521]/10 bg-white/35 p-6 sm:p-8">
-          <p class="text-sm uppercase tracking-[0.2em] text-[#70786f]">Contact</p>
-
-          <div class="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <h2 class="text-2xl font-light tracking-[-0.04em] text-[#1f2521] sm:text-3xl">
-                Let’s build something worth watching.
-              </h2>
-              <a
-                href="mailto:aangelevski6@gmail.com"
-                class="mt-4 inline-block text-base text-[#1f2521]/80 underline decoration-[#1f2521]/30 underline-offset-4 transition hover:text-[#1f2521]"
-              >
-                aangelevski6@gmail.com
-              </a>
-            </div>
-
-            <form class="w-full max-w-xl">
-              <div class="grid gap-5 sm:grid-cols-2">
-                <label class="block text-sm text-[#70786f] sm:col-span-1">
-                  <span class="mb-2 block text-base">Name</span>
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
-                  />
-                </label>
-
-                <label class="block text-sm text-[#70786f] sm:col-span-1">
-                  <span class="mb-2 block text-base">Email</span>
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
-                  />
-                </label>
-
-                <label class="block text-sm text-[#70786f] sm:col-span-2">
-                  <span class="mb-2 block text-base">Project</span>
-                  <textarea
-                    rows="5"
-                    placeholder="Tell me about your idea"
-                    class="w-full resize-none rounded-[22px] border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#70786f]/70 focus:border-[#d96842] focus:outline-none"
-                  />
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                class="mt-6 inline-flex items-center justify-center rounded-full border border-[#1f2521]/15 bg-[#1f2521] px-6 py-3.5 text-base font-medium text-[#f1f0e9] transition hover:bg-[#1f2521]/90"
-              >
-                Send inquiry
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactPage />
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import ContactPage from './contact/index.vue'
 import NavbarPage from './navbar/index.vue'
+import ProjectSlider from '../components/ProjectSlider.vue'
+import ServicesSection from '../components/ServicesSection.vue'
 
 const rotatingWords = [
   'ADVERTISING',
@@ -248,28 +80,8 @@ const rotatingWords = [
   'COLOR GRADING',
 ]
 
-const projectVideos = [
-  'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',
-  'https://youtu.be/ObcWjd3eyps?si=y0IIzo9sMdpvmV8a',
-  'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
-  'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
-  
-  
-  'https://youtu.be/JbL_nv5gwXQ?si=kmGIF2wc0t2kJaZN',
-  'https://youtu.be/1L0Eb1vnXsQ?si=Ye3t2ZWhBJmhUpne',
-  'https://youtu.be/ro_Da05e7e0?si=-Es5YTCI7_cbAqZ7',
-  'https://youtu.be/5G-5AverTiQ?si=xatz8qzQ769o15E5',
-  'https://youtu.be/Kga4wZup_vc?si=LgmUKK3sHAk11spc',
-  'https://youtu.be/NJCpue0xDJ4?si=CEGZRHRP15m4Ytx5',
-  'https://youtu.be/vOaGkt87UHY?si=MayaeP7DEahlP0ru',
-  'https://youtu.be/p3kUSdxnUTs?si=kyubSVwB1BDYA-CO',
-  'https://youtu.be/4BC-v0qtKkM?si=MgC-4ZhRu1glQ0up',
-]
-
-const activeIndex = ref(0)
 const activeWordIndex = ref(0)
 const showBackToTop = ref(false)
-const rawYoutubeUrl = computed(() => projectVideos[activeIndex.value])
 let wordTimer: ReturnType<typeof setInterval> | null = null
 
 function scrollToTop() {
@@ -278,29 +90,6 @@ function scrollToTop() {
 
 function updateBackToTopVisibility() {
   showBackToTop.value = window.scrollY > 200
-}
-
-const embedUrl = computed(() => {
-  const url = rawYoutubeUrl.value ?? ''
-  let videoId = ''
-
-  if (url.includes('watch?v=')) {
-    videoId = url.split('watch?v=')[1]?.split('&')[0] ?? ''
-  } else if (url.includes('youtu.be/')) {
-    videoId = url.split('youtu.be/')[1]?.split('?')[0] ?? ''
-  } else if (url.includes('embed/')) {
-    return url
-  }
-
-  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`
-})
-
-function showPrevious() {
-  activeIndex.value = (activeIndex.value - 1 + projectVideos.length) % projectVideos.length
-}
-
-function showNext() {
-  activeIndex.value = (activeIndex.value + 1) % projectVideos.length
 }
 
 onMounted(() => {
