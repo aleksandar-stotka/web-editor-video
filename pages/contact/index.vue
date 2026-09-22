@@ -30,12 +30,12 @@
                         </label>
 
                         <label class="block text-sm text-[#1f2521] sm:col-span-1">
-                            <span class="mb-2 block text-base text-[#1f2521]">Email</span>
+                            <span class="mb-2 block text-base text-[#1f2521]">Your Email</span>
                             <input
                                 v-model="form.email"
                                 type="email"
                                 required
-                                placeholder="Your email"
+                                placeholder="Your Email"
                                 class="w-full rounded-full border border-[#1f2521]/15 bg-white/70 px-5 py-4 text-base text-[#1f2521] placeholder:text-[#d96842]/70 focus:border-[#d96842] focus:outline-none"
                             />
                         </label>
