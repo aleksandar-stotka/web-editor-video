@@ -40,7 +40,29 @@
       </div>
 
       <div class="relative aspect-video overflow-hidden rounded-[18px] bg-[#111111]">
+        <!-- Кога уште не е кликнато, прикажи Max-Res слика со Play копче -->
+        <div 
+          v-if="!isPlaying" 
+          class="group relative h-full w-full cursor-pointer overflow-hidden" 
+          @click="isPlaying = true"
+        >
+          <img 
+            :src="maxResThumbnail" 
+            :alt="`Project video ${activeIndex + 1}`" 
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#d96842] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <svg class="ml-1 h-8 w-8 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Кога корисникот ќе кликне Play, се вчитува самиот YouTube iframe -->
         <iframe
+          v-else
           :src="embedUrl"
           :title="`Project video ${activeIndex + 1}`"
           frameborder="0"
@@ -62,7 +84,7 @@
             ]"
             :aria-label="`Show project video ${index + 1}`"
             :aria-current="activeIndex === index ? 'true' : undefined"
-            @click="activeIndex = index"
+            @click="selectVideo(index)"
           ></button>
         </div>
 
@@ -97,29 +119,43 @@ const projectVideos = [
 ]
 
 const activeIndex = ref(0)
-const rawYoutubeUrl = computed(() => projectVideos[activeIndex.value])
+const isPlaying = ref(false)
 
-const embedUrl = computed(() => {
-  const url = rawYoutubeUrl.value ?? ''
-  let videoId = ''
-
+const videoId = computed(() => {
+  const url = projectVideos[activeIndex.value] ?? ''
   if (url.includes('watch?v=')) {
-    videoId = url.split('watch?v=')[1]?.split('&')[0] ?? ''
+    return url.split('watch?v=')[1]?.split('&')[0] ?? ''
   } else if (url.includes('youtu.be/')) {
-    videoId = url.split('youtu.be/')[1]?.split('?')[0] ?? ''
-  } else if (url.includes('embed/')) {
-    return url
+    return url.split('youtu.be/')[1]?.split('?')[0] ?? ''
   }
+  return ''
+})
 
-  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`
+// Max resolution thumbnail од YouTube
+const maxResThumbnail = computed(() => {
+  if (!videoId.value) return ''
+  return `https://img.youtube.com/vi/${videoId.value}/maxresdefault.jpg`
+})
+
+// Автоматски стартува видео со autoplay кога ќе се кликне
+const embedUrl = computed(() => {
+  if (!videoId.value) return ''
+  return `https://www.youtube-nocookie.com/embed/${videoId.value}?autoplay=1&rel=0&vq=hd1080`
 })
 
 function showPrevious() {
+  isPlaying.value = false
   activeIndex.value = (activeIndex.value - 1 + projectVideos.length) % projectVideos.length
 }
 
 function showNext() {
+  isPlaying.value = false
   activeIndex.value = (activeIndex.value + 1) % projectVideos.length
+}
+
+function selectVideo(index: number) {
+  isPlaying.value = false
+  activeIndex.value = index
 }
 </script>
 
