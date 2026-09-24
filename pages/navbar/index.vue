@@ -1,6 +1,27 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { useLanguage } from '~/composables/useLanguage'
+
+const translations = {
+  en: {
+    navAbout: 'About',
+    navServices: 'Services',
+    navProjects: 'Projects',
+    navContact: 'Contact'
+  },
+  mk: {
+    navAbout: 'За нас',
+    navServices: 'Услуги',
+    navProjects: 'Проекти',
+    navContact: 'Контакт'
+  }
+} as const
+
+const useLanguage = () => {
+  const locale = ref<'en' | 'mk'>('en')
+  const t = (key: keyof (typeof translations)['en']) => translations[locale.value][key]
+
+  return { t, locale }
+}
 
 const { t, locale } = useLanguage()
 
@@ -76,7 +97,7 @@ onBeforeUnmount(() => {
 
       <div
         :class="[
-          isMenuOpen || isScrolled ? 'flex' : 'hidden',
+          isMenuOpen ? 'flex' : 'hidden',
           'flex-col gap-1 sm:flex sm:items-center sm:gap-2',
           isScrolled ? 'sm:items-stretch' : 'sm:flex-row'
         ]"
