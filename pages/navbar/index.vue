@@ -1,27 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-
-const translations = {
-  en: {
-    navAbout: 'About',
-    navServices: 'Services',
-    navProjects: 'Projects',
-    navContact: 'Contact'
-  },
-  mk: {
-    navAbout: 'За нас',
-    navServices: 'Услуги',
-    navProjects: 'Проекти',
-    navContact: 'Контакт'
-  }
-} as const
-
-const useLanguage = () => {
-  const locale = ref<'en' | 'mk'>('en')
-  const t = (key: keyof (typeof translations)['en']) => translations[locale.value][key]
-
-  return { t, locale }
-}
+import { useLanguage } from '~/composables/useLanguage'
 
 const { t, locale } = useLanguage()
 
