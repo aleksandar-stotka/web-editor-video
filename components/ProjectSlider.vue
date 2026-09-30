@@ -108,6 +108,7 @@ const projectVideos = [
   'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
   'https://youtu.be/1L0Eb1vnXsQ?si=Ye3t2ZWhBJmhUpne',
   'https://youtu.be/ro_Da05e7e0?si=-Es5YTCI7_cbAqZ7',
+  'https://youtu.be/EjH85XpST-8',
   'https://youtu.be/1rH6hTpaDgc?si=FkSYSQfJzwFNFa0e',
   'https://youtu.be/NJCpue0xDJ4?si=CEGZRHRP15m4Ytx5',
   'https://youtu.be/JbL_nv5gwXQ?si=kmGIF2wc0t2kJaZN',
