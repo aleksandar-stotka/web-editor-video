@@ -50,6 +50,9 @@
             :src="maxResThumbnail" 
             :alt="`Project video ${activeIndex + 1}`" 
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            ref="thumbnailImage"
+            @load="useFallbackThumbnail"
+            @error="useFallbackThumbnail"
           />
           <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
             <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#d96842] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
@@ -97,13 +100,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 
 const { t } = useLanguage()
 
 const projectVideos = [
-  'https://youtu.be/a6bITHezhzc',
+  'https://youtu.be/a6bITHezhzc?si=eg4JfLKX7DmUjalV',
   'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',
   'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
   'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
@@ -123,6 +126,7 @@ const projectVideos = [
 
 const activeIndex = ref(0)
 const isPlaying = ref(false)
+const thumbnailImage = ref<HTMLImageElement | null>(null)
 
 const videoId = computed(() => {
   const url = projectVideos[activeIndex.value] ?? ''
@@ -138,6 +142,27 @@ const videoId = computed(() => {
 const maxResThumbnail = computed(() => {
   if (!videoId.value) return ''
   return `https://img.youtube.com/vi/${videoId.value}/maxresdefault.jpg`
+})
+
+const fallbackThumbnail = computed(() => {
+  if (!videoId.value) return ''
+  return `https://img.youtube.com/vi/${videoId.value}/sddefault.jpg`
+})
+
+function useFallbackThumbnail(event: Event) {
+  updateThumbnailFallback(event.currentTarget as HTMLImageElement, event.type === 'error')
+}
+
+function updateThumbnailFallback(image: HTMLImageElement, failed = false) {
+  if (image.src !== fallbackThumbnail.value && (failed || (image.complete && image.naturalWidth <= 120))) {
+    image.src = fallbackThumbnail.value
+  }
+}
+
+onMounted(() => {
+  if (thumbnailImage.value) {
+    updateThumbnailFallback(thumbnailImage.value)
+  }
 })
 
 // Автоматски стартува видео со autoplay кога ќе се кликне
