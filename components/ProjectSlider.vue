@@ -103,6 +103,7 @@ import { useLanguage } from '~/composables/useLanguage'
 const { t } = useLanguage()
 
 const projectVideos = [
+  'https://youtu.be/X5GaJi0v3io?si=_dB5ESgF3zoT63qE',
   'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',
   'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
   'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
