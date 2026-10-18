@@ -20,7 +20,7 @@
       </p>
 
       <p>
-        {{ t('aboutPageP5') }}
+        <strong>{{ t('aboutPageP5') }}</strong>
       </p>
     </div>
   </section>

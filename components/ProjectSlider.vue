@@ -12,48 +12,23 @@
       </NuxtLink>
     </div>
 
-    <div class="rounded-[24px] border border-[#1f2521]/10 bg-white/35 p-4 sm:p-6">
-      <div class="mb-4 flex items-center justify-between gap-4 border-b border-[#1f2521]/10 pb-3">
-        <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#70786f]">
-          {{ String(activeIndex + 1).padStart(2, '0') }} / {{ String(projectVideos.length).padStart(2, '0') }}
-        </p>
-
-        <div class="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Previous project"
-            class="flex h-12 w-12 items-center justify-center rounded-full border border-[#1f2521] bg-transparent text-2xl text-[#1f2521] transition hover:bg-[#d96842] hover:text-white"
-            @click="showPrevious"
-          >
-            &#8592;
-          </button>
-          <span class="click-hint" aria-hidden="true">{{ t('projectHint') }}</span>
-          <button
-            type="button"
-            aria-label="Next project"
-            class="flex h-12 w-12 items-center justify-center rounded-full border border-[#1f2521] bg-transparent text-2xl text-[#1f2521] transition hover:bg-[#d96842] hover:text-white"
-            @click="showNext"
-          >
-            &#8594;
-          </button>
-        </div>
-      </div>
-
-      <div class="relative aspect-video overflow-hidden rounded-[18px] bg-[#111111]">
-        <!-- Кога уште не е кликнато, прикажи Max-Res слика со Play копче -->
-        <div 
-          v-if="!isPlaying" 
-          class="group relative h-full w-full cursor-pointer overflow-hidden" 
-          @click="isPlaying = true"
-        >
-          <img 
-            :src="maxResThumbnail" 
-            :alt="`Project video ${activeIndex + 1}`" 
+    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <a
+        v-for="(video, index) in projectVideos"
+        :key="video"
+        :href="video"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group overflow-hidden rounded-[22px] border border-[#1f2521]/10 bg-white/35 shadow-[0_15px_35px_rgba(31,37,33,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(31,37,33,0.12)]"
+      >
+        <div class="relative aspect-video overflow-hidden bg-[#111111]">
+          <img
+            :src="getThumbnail(video)"
+            :alt="`Project video ${index + 1}`"
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            ref="thumbnailImage"
-            @load="useFallbackThumbnail"
-            @error="useFallbackThumbnail"
+            @error="handleImageError($event, video)"
           />
+
           <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
             <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#d96842] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
               <svg class="ml-1 h-8 w-8 fill-current" viewBox="0 0 24 24">
@@ -63,56 +38,31 @@
           </div>
         </div>
 
-        <!-- Кога корисникот ќе кликне Play, се вчитува самиот YouTube iframe -->
-        <iframe
-          v-else
-          :src="embedUrl"
-          :title="`Project video ${activeIndex + 1}`"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="absolute inset-0 h-full w-full"
-        ></iframe>
-      </div>
-
-      <div class="mt-4 flex items-center justify-between gap-4">
-        <div class="flex flex-wrap gap-2">
-          <button
-            v-for="(video, index) in projectVideos"
-            :key="video"
-            type="button"
-            :class="[
-              'h-1.5 rounded-full transition-all',
-              activeIndex === index ? 'w-16 bg-[#d96842]' : 'w-8 bg-[#d9ddd5]'
-            ]"
-            :aria-label="`Show project video ${index + 1}`"
-            :aria-current="activeIndex === index ? 'true' : undefined"
-            @click="selectVideo(index)"
-          ></button>
+        <div class="flex items-center justify-between gap-3 px-4 py-3">
+          <p class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#70786f]">
+            {{ t('projectFilm') }} {{ String(index + 1).padStart(2, '0') }}
+          </p>
+          <span class="text-sm text-[#1f2521] transition group-hover:text-[#d96842]">↗</span>
         </div>
-
-        <p class="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[#70786f]">
-          {{ t('projectFilm') }} {{ String(activeIndex + 1).padStart(2, '0') }}
-        </p>
-      </div>
+      </a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 
 const { t } = useLanguage()
 
 const projectVideos = [
   'https://youtu.be/a6bITHezhzc?si=eg4JfLKX7DmUjalV',
+  'https://youtu.be/pcmuvV-mk1w?si=1tX5iHyZLJX89_A8',
   'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',
   'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
   'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
   'https://youtu.be/1L0Eb1vnXsQ?si=Ye3t2ZWhBJmhUpne',
   'https://youtu.be/ro_Da05e7e0?si=-Es5YTCI7_cbAqZ7',
-  'https://youtu.be/EjH85XpST-8',
+  
   'https://youtu.be/1rH6hTpaDgc?si=FkSYSQfJzwFNFa0e',
   'https://youtu.be/NJCpue0xDJ4?si=CEGZRHRP15m4Ytx5',
   'https://youtu.be/JbL_nv5gwXQ?si=kmGIF2wc0t2kJaZN',
@@ -124,89 +74,44 @@ const projectVideos = [
   'https://youtu.be/4BC-v0qtKkM?si=MgC-4ZhRu1glQ0up',
 ]
 
-const activeIndex = ref(0)
-const isPlaying = ref(false)
-const thumbnailImage = ref<HTMLImageElement | null>(null)
-
-const videoId = computed(() => {
-  const url = projectVideos[activeIndex.value] ?? ''
+function getVideoId(url: string) {
   if (url.includes('watch?v=')) {
     return url.split('watch?v=')[1]?.split('&')[0] ?? ''
-  } else if (url.includes('youtu.be/')) {
+  }
+
+  if (url.includes('youtu.be/')) {
     return url.split('youtu.be/')[1]?.split('?')[0] ?? ''
   }
+
   return ''
-})
-
-// Max resolution thumbnail од YouTube
-const maxResThumbnail = computed(() => {
-  if (!videoId.value) return ''
-  return `https://img.youtube.com/vi/${videoId.value}/maxresdefault.jpg`
-})
-
-const fallbackThumbnail = computed(() => {
-  if (!videoId.value) return ''
-  return `https://img.youtube.com/vi/${videoId.value}/sddefault.jpg`
-})
-
-function useFallbackThumbnail(event: Event) {
-  updateThumbnailFallback(event.currentTarget as HTMLImageElement, event.type === 'error')
 }
 
-function updateThumbnailFallback(image: HTMLImageElement, failed = false) {
-  if (image.src !== fallbackThumbnail.value && (failed || (image.complete && image.naturalWidth <= 120))) {
-    image.src = fallbackThumbnail.value
+function getThumbnailCandidates(url: string) {
+  const id = getVideoId(url)
+
+  if (!id) return []
+
+  return [
+    `https://img.youtube.com/vi/${id}/sddefault.jpg`,
+    `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/0.jpg`
+  ]
+}
+
+function getThumbnail(url: string) {
+  const [first] = getThumbnailCandidates(url)
+  return first ?? ''
+}
+
+function handleImageError(event: Event, url: string) {
+  const image = event.currentTarget as HTMLImageElement
+  const candidates = getThumbnailCandidates(url)
+  const currentIndex = candidates.indexOf(image.currentSrc || image.src)
+  const nextIndex = currentIndex >= 0 ? currentIndex + 1 : 0
+
+  if (nextIndex < candidates.length) {
+    image.src = candidates[nextIndex]
   }
-}
-
-onMounted(() => {
-  if (thumbnailImage.value) {
-    updateThumbnailFallback(thumbnailImage.value)
-  }
-})
-
-// Автоматски стартува видео со autoplay кога ќе се кликне
-const embedUrl = computed(() => {
-  if (!videoId.value) return ''
-  return `https://www.youtube-nocookie.com/embed/${videoId.value}?autoplay=1&rel=0&vq=hd1080`
-})
-
-function showPrevious() {
-  isPlaying.value = false
-  activeIndex.value = (activeIndex.value - 1 + projectVideos.length) % projectVideos.length
-}
-
-function showNext() {
-  isPlaying.value = false
-  activeIndex.value = (activeIndex.value + 1) % projectVideos.length
-}
-
-function selectVideo(index: number) {
-  isPlaying.value = false
-  activeIndex.value = index
 }
 </script>
-
-<style scoped>
-.click-hint {
-  color: #d96842;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  animation: click-hint-pulse 3s ease-in-out infinite;
-}
-
-@keyframes click-hint-pulse {
-  0%,
-  70%,
-  100% {
-    opacity: 0.25;
-    transform: translateX(0);
-  }
-  78%,
-  90% {
-    opacity: 1;
-    transform: translateX(3px);
-  }
-}
-</style>
