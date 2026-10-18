@@ -15,18 +15,18 @@
     <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       <a
         v-for="(video, index) in projectVideos"
-        :key="video"
-        :href="video"
+        :key="video.url"
+        :href="video.url"
         target="_blank"
         rel="noopener noreferrer"
         class="group overflow-hidden rounded-[22px] border border-[#1f2521]/10 bg-white/35 shadow-[0_15px_35px_rgba(31,37,33,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(31,37,33,0.12)]"
       >
         <div class="relative aspect-video overflow-hidden bg-[#111111]">
           <img
-            :src="getThumbnail(video)"
-            :alt="`Project video ${index + 1}`"
+            :src="getThumbnail(video.url)"
+            :alt="video.title || `Project video ${index + 1}`"
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            @error="handleImageError($event, video)"
+            @error="handleImageError($event, video.url)"
           />
 
           <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
@@ -38,7 +38,13 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between gap-3 px-4 py-3">
+        <div class="px-4 pb-3 pt-3">
+          <p v-if="video.title" class="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#1f2521]/80 sm:text-[11px]">
+            {{ video.title }}
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 px-4 pb-3">
           <p class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#70786f]">
             {{ t('projectFilm') }} {{ String(index + 1).padStart(2, '0') }}
           </p>
@@ -55,23 +61,22 @@ import { useLanguage } from '~/composables/useLanguage'
 const { t } = useLanguage()
 
 const projectVideos = [
-  'https://youtu.be/a6bITHezhzc?si=eg4JfLKX7DmUjalV',
-  'https://youtu.be/pcmuvV-mk1w?si=1tX5iHyZLJX89_A8',
-  'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I',
-  'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht',
-  'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ',
-  'https://youtu.be/1L0Eb1vnXsQ?si=Ye3t2ZWhBJmhUpne',
-  'https://youtu.be/ro_Da05e7e0?si=-Es5YTCI7_cbAqZ7',
-  
-  'https://youtu.be/1rH6hTpaDgc?si=FkSYSQfJzwFNFa0e',
-  'https://youtu.be/NJCpue0xDJ4?si=CEGZRHRP15m4Ytx5',
-  'https://youtu.be/JbL_nv5gwXQ?si=kmGIF2wc0t2kJaZN',
-  'https://youtu.be/ObcWjd3eyps?si=y0IIzo9sMdpvmV8a',
-  'https://youtu.be/5G-5AverTiQ?si=xatz8qzQ769o15E5',
-  'https://youtu.be/Kga4wZup_vc?si=LgmUKK3sHAk11spc',
-  'https://youtu.be/vOaGkt87UHY?si=MayaeP7DEahlP0ru',
-  'https://youtu.be/p3kUSdxnUTs?si=kyubSVwB1BDYA-CO',
-  'https://youtu.be/4BC-v0qtKkM?si=MgC-4ZhRu1glQ0up',
+  { title: 'Storyline', url: 'https://youtu.be/a6bITHezhzc?si=eg4JfLKX7DmUjalV' },
+  { title: 'Radiohead – Let Down | Cinematic Music Video (Fan-Made)', url: 'https://youtu.be/pcmuvV-mk1w?si=1tX5iHyZLJX89_A8' },
+  { title: 'Stop Racism', url: 'https://youtu.be/ZLKsOn235u8?si=KRhibq1DzTlttI5I' },
+  { title: 'Bees and Beekeeping in 10 Minutes part 1', url: 'https://youtu.be/rPwZb_nr0P4?si=nzVQKnHr3_hDNAht' },
+  { title: 'Velvet Strut', url: 'https://youtu.be/8cfWt3t8o8s?si=sSPFiXxv7l_SO_LQ' },
+  { title: 'The Man from Earth – Why Storytelling Beats CGI', url: 'https://youtu.be/1L0Eb1vnXsQ?si=Ye3t2ZWhBJmhUpne' },
+  { title: '# Black & White Emotion | Miserable Girl', url: 'https://youtu.be/ro_Da05e7e0?si=-Es5YTCI7_cbAqZ7' },
+  { title: 'Fatboy Slim - Brimful Of Asha [Visual Redesign]', url: 'https://youtu.be/1rH6hTpaDgc?si=FkSYSQfJzwFNFa0e' },
+  { title: 'Skara House — Commercial Spot', url: 'https://youtu.be/NJCpue0xDJ4?si=CEGZRHRP15m4Ytx5' },
+  { title: 'SKARA HOUSE', url: 'https://youtu.be/JbL_nv5gwXQ?si=kmGIF2wc0t2kJaZN' },
+  { title: 'Color Grading & Video Editing DaVinci Resolve', url: 'https://youtu.be/ObcWjd3eyps?si=y0IIzo9sMdpvmV8a' },
+  { title: 'Bees and Beekeeping in 10 Minutes part 2', url: 'https://youtu.be/5G-5AverTiQ?si=xatz8qzQ769o15E5' },
+  { title: '', url: 'https://youtu.be/Kga4wZup_vc?si=LgmUKK3sHAk11spc' },
+  { title: '', url: 'https://youtu.be/vOaGkt87UHY?si=MayaeP7DEahlP0ru' },
+  { title: '', url: 'https://youtu.be/p3kUSdxnUTs?si=kyubSVwB1BDYA-CO' },
+  { title: '', url: 'https://youtu.be/4BC-v0qtKkM?si=MgC-4ZhRu1glQ0up' },
 ]
 
 function getVideoId(url: string) {
