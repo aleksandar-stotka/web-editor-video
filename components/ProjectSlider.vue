@@ -1,12 +1,12 @@
 <template>
   <section id="projects" class="pb-16 pt-8">
-    <div class="mb-6 flex items-end justify-between gap-4">
+    <div class="scroll-reveal mb-6 flex items-end justify-between gap-4">
       <div>
-        <h2 class="text-3xl font-light tracking-[-0.04em] text-[#d96842] sm:text-4xl">{{ t('navProjects').toUpperCase() }}</h2>
+        <h2 class="scroll-scale-title text-3xl font-light tracking-[-0.04em] text-[#e50914] sm:text-4xl">{{ t('navProjects').toUpperCase() }}</h2>
       </div>
       <NuxtLink
         to="/#projects"
-        class="text-xs font-semibold uppercase tracking-[0.14em] text-[#70786f] transition hover:text-[#d96842]"
+        class="text-xs font-semibold uppercase tracking-[0.14em] text-[#b3b3b3] transition hover:text-[#e50914]"
       >
         {{ t('projectViewAll') }}
       </NuxtLink>
@@ -19,7 +19,7 @@
         :href="video.url"
         target="_blank"
         rel="noopener noreferrer"
-        class="group overflow-hidden rounded-[22px] border border-[#1f2521]/10 bg-white/35 shadow-[0_15px_35px_rgba(31,37,33,0.06)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(31,37,33,0.12)]"
+        class="scroll-reveal group overflow-hidden rounded-[22px] border border-white/10 bg-[#222222] shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)]"
       >
         <div class="relative aspect-video overflow-hidden bg-[#111111]">
           <img
@@ -30,7 +30,7 @@
           />
 
           <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
-            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#d96842] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#e50914] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
               <svg class="ml-1 h-8 w-8 fill-current" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
@@ -39,16 +39,16 @@
         </div>
 
         <div class="px-4 pb-3 pt-3">
-          <p v-if="video.title" class="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#1f2521]/80 sm:text-[11px]">
+          <p v-if="video.title" class="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#f5f5f1]/80 sm:text-[11px]">
             {{ video.title }}
           </p>
         </div>
 
         <div class="flex items-center justify-between gap-3 px-4 pb-3">
-          <p class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#70786f]">
+          <p class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#b3b3b3]">
             {{ t('projectFilm') }} {{ String(index + 1).padStart(2, '0') }}
           </p>
-          <span class="text-sm text-[#1f2521] transition group-hover:text-[#d96842]">↗</span>
+          <span class="text-sm text-[#f5f5f1] transition group-hover:text-[#e50914]">↗</span>
         </div>
       </a>
     </div>

@@ -39,30 +39,30 @@ onBeforeUnmount(() => {
 <template>
   <NuxtLink
     to="/"
-    class="fixed left-4 top-4 z-50 text-base font-bold uppercase tracking-[0.16em] text-[#1f2521] transition hover:text-[#d96842] sm:left-6 sm:top-6 sm:text-lg"
+    class="fixed left-4 top-4 z-50 text-base font-bold uppercase tracking-[0.16em] text-[#f5f5f1] transition hover:text-[#e50914] sm:left-6 sm:top-6 sm:text-lg"
   >
     <span class="storyline-mark">STORYLINE</span>
-    <span class="font-normal normal-case tracking-[0.04em] text-[#d96842]">studio</span>
+    <span class="font-normal normal-case tracking-[0.04em] text-[#e50914]">studio</span>
   </NuxtLink>
 
   <nav
     aria-label="Main navigation"
     :class="[
       'fixed right-4 top-4 z-50 transition-colors duration-500 sm:right-6 sm:top-6',
-      isScrolled ? 'text-[#d96842]' : 'text-[#1f2521]'
+      isScrolled ? 'text-[#e50914]' : 'text-[#f5f5f1]'
     ]"
   >
     <div
       :class="[
-        'flex items-stretch gap-1 border p-1 shadow-[0_12px_30px_rgba(239,109,63,0.12)] transition-all duration-500',
+        'flex items-stretch gap-1 border p-1 shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-500',
         isScrolled
           ? 'flex-col rounded-[20px] border-transparent bg-transparent shadow-none'
-          : 'flex-col rounded-[20px] border-[#ef6d3f]/25 bg-[#f6eee8]/80 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full'
+          : 'flex-col rounded-[20px] border-white/15 bg-[#141414]/90 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full'
       ]"
     >
       <button
         type="button"
-        class="flex h-10 w-10 items-center justify-center self-end rounded-full transition hover:text-[#ef6d3f] sm:hidden"
+        class="flex h-10 w-10 items-center justify-center self-end rounded-full transition hover:text-[#e50914] sm:hidden"
         aria-label="Toggle navigation menu"
         :aria-expanded="isMenuOpen"
         @click="isMenuOpen = !isMenuOpen"
@@ -76,21 +76,21 @@ onBeforeUnmount(() => {
 
       <div
         :class="[
-          isMenuOpen ? 'flex' : 'hidden',
-          'flex-col gap-1 sm:flex sm:items-center sm:gap-2',
+          'menu-links flex-col gap-1 sm:items-center sm:gap-2',
+          { 'menu-links-open': isMenuOpen },
           isScrolled ? 'sm:items-stretch' : 'sm:flex-row'
         ]"
       >
-        <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
+        <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navAbout') }}
         </a>
-        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
+        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navServices') }}
         </NuxtLink>
-        <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
+        <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navProjects') }}
         </NuxtLink>
-        <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] sm:text-sm" @click="closeMenu">
+        <a href="#contact" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navContact') }}
         </a>
       </div>
@@ -101,8 +101,8 @@ onBeforeUnmount(() => {
         :value="locale"
         @change="handleLanguageChange"
         :class="[
-          'h-9 appearance-none rounded-full border border-current px-3 pr-8 text-[10px] font-bold uppercase tracking-[0.18em] transition hover:text-[#ef6d3f] focus:outline-none',
-          isScrolled ? 'bg-transparent' : 'bg-[#f8f4ef]'
+          'h-9 appearance-none rounded-full border border-current px-3 pr-8 text-[10px] font-bold uppercase tracking-[0.18em] transition hover:text-[#e50914] focus:outline-none',
+          isScrolled ? 'bg-transparent' : 'bg-[#222222]'
         ]"
         aria-label="Select language"
       >
@@ -119,7 +119,45 @@ onBeforeUnmount(() => {
   font-size: 1.12em;
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1px #1f2521;
+  -webkit-text-stroke: 1px #f5f5f1;
+}
+
+.menu-links {
+  display: flex;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  visibility: hidden;
+  transition:
+    max-height 300ms ease,
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 200ms ease;
+}
+
+.menu-links-open {
+  max-height: 16rem;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+@media (min-width: 640px) {
+  .menu-links,
+  .menu-links.menu-links-open {
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-links {
+    transition: none;
+  }
 }
 </style>
-
