@@ -42,15 +42,19 @@
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP2') }}
+          {{ t('aboutP2Before') }}<strong>{{ t('aboutP2Tools') }}</strong>{{ t('aboutP2After') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP3') }}
+          {{ t('aboutP3Before') }}<strong>{{ t('aboutP3Tools') }}</strong>{{ t('aboutP3After') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
           {{ t('aboutP4') }}
+        </p>
+
+        <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
+          {{ t('aboutP5') }}
         </p>
       </section>
 
