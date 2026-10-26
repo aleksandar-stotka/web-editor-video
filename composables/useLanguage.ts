@@ -16,18 +16,19 @@ export const useLanguage = () => {
       aboutTitle: 'ABOUT ME',
       aboutP1:
         'I’m Aleksandar, a Video Editor focused on creating engaging, polished, and story-driven content for commercials, music videos, short documentaries, and digital media.',
-      aboutP2Before: 'My primary expertise is post-production using ',
-      aboutP2Tools: 'Adobe Premiere Pro, After Effects, and DaVinci Resolve',
-      aboutP2After:
-        ', covering everything from assembly editing and color grading to motion graphics and visual effects.',
-      aboutP3Before: 'To complement my core editing workflows, I integrate ',
-      aboutP3Tools: 'AI-driven tools like Runway and ElevenLabs',
+      aboutP2Before: 'My core expertise spans post-production in ',
+      aboutP2Premiere: 'Adobe Premiere Pro',
+      aboutP2BetweenPremiereAndAfterEffects: ', ',
+      aboutP2AfterEffects: 'After Effects',
+      aboutP2BetweenAfterEffectsAndDaVinci: ', and ',
+      aboutP2DaVinci: 'DaVinci Resolve',
+      aboutP2After: '—covering assembly editing, color grading, motion graphics, visual effects, and audio cleanup.',
+      aboutP3Before: 'In addition to editing, I have a background in ',
+      aboutP3Programming: 'programming',
       aboutP3After:
-        ' to expand creative possibilities. Whether generating custom B-roll assets, synthesizing high-quality audio, or leveraging neural processing in Premiere and Resolve, I use AI to speed up turnaround times and elevate visual storytelling without compromising editorial quality.',
+        '. This technical foundation gives me a distinct advantage when managing media pipelines, digital video formats, and complex technical workflows.',
       aboutP4:
-        'Before dedicating myself fully to video editing, I built a foundation in web development, working with modern web technologies to build responsive sites. This background gives me a distinct technical edge—allowing me to combine creative visual storytelling with a deep understanding of digital media formats and technical workflows.',
-      aboutP5:
-        'Today, my focus is entirely on visual storytelling: turning raw footage into compelling videos that evoke emotion, communicate ideas clearly, and hold audience attention. I am always looking to collaborate with businesses, agencies, artists, and creative teams on ambitious video projects.',
+        'My focus is turning raw footage into compelling videos that evoke emotion and hold audience attention. I’m always open to collaborating with businesses, agencies, and creative teams on ambitious projects.',
       servicesTitle: 'Video editing packages',
       servicesLabel: 'Services',
       choosePackage: 'Request Quote',
@@ -108,18 +109,19 @@ export const useLanguage = () => {
       aboutTitle: 'ЗА МЕНЕ',
       aboutP1:
         'Јас сум Александар, видео едитор фокусиран на креирање ангажирачки, полирани и приказно-водени содржини за реклами, музички видеа, кратки документарци и дигитални медиуми.',
-      aboutP2Before: 'Моја главна експертиза е постпродукција со ',
-      aboutP2Tools: 'Adobe Premiere Pro, After Effects и DaVinci Resolve',
-      aboutP2After:
-        ', од основна монтажа и градирање на бои до motion graphics и визуелни ефекти.',
-      aboutP3Before: 'За да ги надополнам моите главни работни процеси во монтажа, користам ',
-      aboutP3Tools: 'алатки засновани на вештачка интелигенција, како Runway и ElevenLabs',
+      aboutP2Before: 'Моја главна експертиза е постпродукција во ',
+      aboutP2Premiere: 'Adobe Premiere Pro',
+      aboutP2BetweenPremiereAndAfterEffects: ', ',
+      aboutP2AfterEffects: 'After Effects',
+      aboutP2BetweenAfterEffectsAndDaVinci: ' и ',
+      aboutP2DaVinci: 'DaVinci Resolve',
+      aboutP2After: '—вклучувајќи монтажа, градирање на бои, motion graphics, визуелни ефекти и чистење на звук.',
+      aboutP3Before: 'Покрај монтажата, имам познавање и од ',
+      aboutP3Programming: 'програмирање',
       aboutP3After:
-        ' за да ги проширам креативните можности. Без разлика дали создавам B-roll материјали, синтетизирам квалитетен звук или користам невронска обработка во Premiere и Resolve, ја користам вештачката интелигенција за побрза испорака и подобро визуелно раскажување, без компромис во уредничкиот квалитет.',
+        '. Оваа техничка основа ми дава предност при управување со медиумски процеси, дигитални видео формати и сложени технички работни текови.',
       aboutP4:
-        'Пред целосно да се посветам на видео монтажата, изградив основа во веб-развојот, работејќи со современи веб-технологии за изработка на адаптивни веб-страници. Ова искуство ми дава техничка предност и ми овозможува да го спојам креативното визуелно раскажување со добро разбирање на дигиталните формати и техничките работни процеси.',
-      aboutP5:
-        'Денес, мојот фокус е целосно на визуелното раскажување: претворање сурови снимки во привлечни видеа што будат емоции, јасно пренесуваат идеи и го задржуваат вниманието на публиката. Секогаш барам можности за соработка со бизниси, агенции, уметници и креативни тимови на амбициозни видео-проекти.',
+        'Мојот фокус е да ги претворам суровите снимки во привлечни видеа што будат емоции и го задржуваат вниманието на публиката. Секогаш сум отворен за соработка со бизниси, агенции и креативни тимови на амбициозни проекти.',
       servicesTitle: 'Пакети за видео монтажа',
       servicesLabel: 'Услуги',
       choosePackage: 'Побарај понуда',
