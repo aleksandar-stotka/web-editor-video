@@ -38,19 +38,28 @@
         <h2 class="scroll-scale-title about-title mb-6 text-3xl font-light tracking-[-0.04em] text-[#e50914] sm:text-4xl">{{ t('aboutTitle') }}</h2>
 
         <p class="about-copy text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP1') }}
+          {{ t('aboutPageP1Before') }}<strong>{{ t('aboutPageCinephile') }}</strong
+          >{{ t('aboutPageP1After') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP2Before') }}<strong>{{ t('aboutP2Premiere') }}</strong>{{ t('aboutP2BetweenPremiereAndAfterEffects') }}<strong>{{ t('aboutP2AfterEffects') }}</strong>{{ t('aboutP2BetweenAfterEffectsAndDaVinci') }}<strong>{{ t('aboutP2DaVinci') }}</strong>{{ t('aboutP2After') }}
+          {{ t('aboutPageP2Before') }}<strong>{{ t('aboutPagePremiere') }}</strong
+          >{{ t('aboutPageP2BetweenPremiereAndAfterEffects') }}<strong>{{ t('aboutPageAfterEffects') }}</strong
+          >{{ t('aboutPageP2BetweenAfterEffectsAndResolve') }}<strong>{{ t('aboutPageResolve') }}</strong
+          >{{ t('aboutPageP2After') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP3Before') }}<strong>{{ t('aboutP3Programming') }}</strong>{{ t('aboutP3After') }}
+          {{ t('aboutPageP3Before') }}<strong>{{ t('aboutPageProgramming') }}</strong
+          >{{ t('aboutPageP3After') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutP4') }}
+          {{ t('aboutPageP4') }}
+        </p>
+
+        <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
+          {{ t('aboutPageP5') }}
         </p>
       </section>
 

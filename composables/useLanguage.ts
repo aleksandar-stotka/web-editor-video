@@ -91,11 +91,21 @@ export const useLanguage = () => {
       myMaterials: 'My Materials Production',
       myMaterialsDesc: 'Music videos, advertisements, and short documentaries built entirely from my materials and stock assets.',
       aboutPageTitle: 'About Me',
-      aboutPageP1: 'I\'m Aleksandar, a video editor passionate about visual storytelling, creative editing, and color grading.',
-      aboutPageP2: 'I work on advertisements, music videos, short documentaries, and other visual projects.',
-      aboutPageP3: 'I use DaVinci Resolve, Adobe Premiere Pro, and Adobe After Effects to bring ideas to life through editing, color, and visual effects.',
-      aboutPageP4: 'I\'m always learning, improving my skills, and exploring new creative possibilities.',
-      aboutPageP5: 'I\'m open to working with businesses, artists, content creators, and anyone with an idea worth bringing to the screen. Like what you see? Let\'s work together. Get in touch and tell me about your project.'
+      aboutPageP1Before: 'I’m Aleksandar, a Video Editor and total ',
+      aboutPageCinephile: 'cinephile',
+      aboutPageP1After: ' dedicated to creating engaging, polished, and story-driven content for commercials, music videos, short documentaries, and digital media.',
+      aboutPageP2Before: 'Driven by a deep passion for cinema, I approach every timeline with a film lover’s eye for pacing, rhythm, and visual storytelling. My primary post-production toolkit includes ',
+      aboutPagePremiere: 'Adobe Premiere Pro',
+      aboutPageP2BetweenPremiereAndAfterEffects: ', ',
+      aboutPageAfterEffects: 'After Effects',
+      aboutPageP2BetweenAfterEffectsAndResolve: ', and ',
+      aboutPageResolve: 'DaVinci Resolve',
+      aboutPageP2After: '—covering assembly editing, color grading, motion graphics, visual effects, and audio cleanup.',
+      aboutPageP3Before: 'In addition to editing, I bring a background in ',
+      aboutPageProgramming: 'programming',
+      aboutPageP3After: '. This technical foundation gives me a distinct advantage when managing digital video formats, complex post-production pipelines, and technical workflows.',
+      aboutPageP4: 'My goal is simple: turn raw footage into compelling visual stories that evoke emotion and hold audience attention.',
+      aboutPageP5: 'I’m always open to collaborating with businesses, agencies, and creative teams on ambitious projects.'
     },
     mk: {
       navAbout: 'За мене',
@@ -184,11 +194,21 @@ export const useLanguage = () => {
       myMaterials: 'Продукција со мои материјали',
       myMaterialsDesc: 'Музички видеа, реклами и кратки документарци создадени целосно од мои материјали и stock assets.',
       aboutPageTitle: 'За мене',
-      aboutPageP1: 'Сум видео едитор фокусиран на креирање ангажирачки, полирани и приказно-водени содржини за реклами, музика, кратки документарци и дигитални медиуми.',
-      aboutPageP2: 'Мојот главен фокус е видео монтажата, со искуство во DaVinci Resolve, Adobe Premiere Pro и After Effects, вклучувајќи монтаж, колор градирање, motion graphics и визуелни ефекти.',
-      aboutPageP3: 'Пред да се посветам целосно на видео монтажата, стекнав искуство и во веб развојот, работејќи со модерни веб технологии и креирајќи веб страници. Ова ми помогна да развијам технички и креативен пристап кон мојата работа.',
-      aboutPageP4: 'Денес, мојот главен фокус е видео монтажата и визуелното раскажување. Го сакаме да ги претворам суровите снимки во видеа кои ја пренесуваат идејата, создаваат емоции и го задржуваат вниманието на гледачот.',
-      aboutPageP5: 'Континуирано ги развивам моите вештини и барам можности да работам со бизниси, агенции, уметници и креативни тимови на професионални видео проекти.'
+      aboutPageP1Before: 'Јас сум Александар, видео едитор и голем ',
+      aboutPageCinephile: 'љубител на филмот',
+      aboutPageP1After: ', посветен на создавање привлечна, полирана и приказно-водена содржина за реклами, музички видеа, кратки документарци и дигитални медиуми.',
+      aboutPageP2Before: 'Воден од длабока страст кон киното, на секоја монтажа ѝ пристапувам со око на филмофил за ритамот, темпото и визуелното раскажување. Мојот главен пакет алатки за постпродукција ги вклучува ',
+      aboutPagePremiere: 'Adobe Premiere Pro',
+      aboutPageP2BetweenPremiereAndAfterEffects: ', ',
+      aboutPageAfterEffects: 'After Effects',
+      aboutPageP2BetweenAfterEffectsAndResolve: ' и ',
+      aboutPageResolve: 'DaVinci Resolve',
+      aboutPageP2After: '—за монтажа, градирање на бои, motion graphics, визуелни ефекти и чистење на звук.',
+      aboutPageP3Before: 'Покрај монтажата, имам и искуство во ',
+      aboutPageProgramming: 'програмирање',
+      aboutPageP3After: '. Оваа техничка основа ми дава предност при работа со дигитални видео формати, сложени постпродукциски процеси и технички работни текови.',
+      aboutPageP4: 'Мојата цел е едноставна: да ги претворам суровите снимки во привлечни визуелни приказни што будат емоции и го задржуваат вниманието на публиката.',
+      aboutPageP5: 'Секогаш сум отворен за соработка со бизниси, агенции и креативни тимови на амбициозни проекти.'
     }
   } as const
 
