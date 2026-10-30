@@ -1,5 +1,5 @@
 <template>
-  <section id="projects" class="pb-16 pt-8">
+  <section id="projects" class="projects-showcase pb-16 pt-8">
     <div class="scroll-reveal mb-6 flex items-end justify-between gap-4">
       <div>
         <h2 class="scroll-scale-title text-3xl font-light tracking-[-0.04em] text-[#e50914] sm:text-4xl">{{ t('navProjects').toUpperCase() }}</h2>
@@ -12,16 +12,16 @@
       </NuxtLink>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+    <div class="project-grid grid gap-5 sm:grid-cols-2">
       <a
         v-for="(video, index) in projectVideos"
         :key="video.url"
         :href="video.url"
         target="_blank"
         rel="noopener noreferrer"
-        class="scroll-reveal group overflow-hidden rounded-[22px] border border-white/10 bg-[#222222] shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)]"
+        class="scroll-reveal project-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#1d1d1d] shadow-[0_16px_40px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#e50914]/60"
       >
-        <div class="relative aspect-video overflow-hidden bg-[#111111]">
+        <div class="relative aspect-[4/3] overflow-hidden bg-[#111111]">
           <img
             :src="getThumbnail(video.url)"
             :alt="video.title || `Project video ${index + 1}`"
@@ -29,26 +29,25 @@
             @error="handleImageError($event, video.url)"
           />
 
-          <div class="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/10">
-            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#e50914] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+          <div class="absolute left-4 top-4 z-10 rounded-full border border-white/20 bg-black/25 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#f5f5f1] backdrop-blur-sm">
+            {{ t('projectFilm') }} {{ String(index + 1).padStart(2, '0') }}
+          </div>
+
+          <div class="absolute inset-0 z-10 flex items-center justify-center">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#e50914]/90 text-white shadow-[0_0_30px_rgba(229,9,20,0.45)] transition-transform duration-300 group-hover:scale-110">
               <svg class="ml-1 h-8 w-8 fill-current" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
           </div>
-        </div>
 
-        <div class="px-4 pb-3 pt-3">
-          <p v-if="video.title" class="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#f5f5f1]/80 sm:text-[11px]">
-            {{ video.title }}
-          </p>
-        </div>
-
-        <div class="flex items-center justify-between gap-3 px-4 pb-3">
-          <p class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#b3b3b3]">
-            {{ t('projectFilm') }} {{ String(index + 1).padStart(2, '0') }}
-          </p>
-          <span class="text-sm text-[#f5f5f1] transition group-hover:text-[#e50914]">↗</span>
+          <div class="absolute bottom-0 left-0 right-0 z-10 p-4">
+            <p v-if="video.title" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#f5f5f1] sm:text-[12px]">
+              {{ video.title }}
+            </p>
+          </div>
         </div>
       </a>
     </div>
@@ -120,3 +119,35 @@ function handleImageError(event: Event, url: string) {
   }
 }
 </script>
+
+<style scoped>
+.projects-showcase {
+  position: relative;
+}
+
+.projects-showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(229, 9, 20, 0.8), rgba(255, 182, 0, 0.6));
+  border-radius: 9999px;
+  opacity: 0.8;
+}
+
+.project-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20,20,20,0.96), rgba(10,10,10,0.98));
+}
+
+.project-card img {
+  filter: saturate(1.1) contrast(1.08);
+}
+
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>

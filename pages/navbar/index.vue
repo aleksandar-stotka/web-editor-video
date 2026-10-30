@@ -84,9 +84,6 @@ onBeforeUnmount(() => {
         <a href="#about" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navAbout') }}
         </a>
-        <NuxtLink to="/#services" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
-          {{ t('navServices') }}
-        </NuxtLink>
         <NuxtLink to="/#projects" class="rounded-full px-2 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:text-[#e50914] sm:text-sm" @click="closeMenu">
           {{ t('navProjects') }}
         </NuxtLink>

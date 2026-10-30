@@ -38,34 +38,24 @@
         <h2 class="scroll-scale-title about-title mb-6 text-3xl font-light tracking-[-0.04em] text-[#e50914] sm:text-4xl">{{ t('aboutTitle') }}</h2>
 
         <p class="about-copy text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutPageP1Before') }}<strong>{{ t('aboutPageCinephile') }}</strong
-          >{{ t('aboutPageP1After') }}
+          {{ t('aboutPageP1') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutPageP2Before') }}<strong>{{ t('aboutPagePremiere') }}</strong
-          >{{ t('aboutPageP2BetweenPremiereAndAfterEffects') }}<strong>{{ t('aboutPageAfterEffects') }}</strong
-          >{{ t('aboutPageP2BetweenAfterEffectsAndResolve') }}<strong>{{ t('aboutPageResolve') }}</strong
-          >{{ t('aboutPageP2After') }}
+          {{ t('aboutPageP2') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutPageP3Before') }}<strong>{{ t('aboutPageProgramming') }}</strong
-          >{{ t('aboutPageP3After') }}
+          {{ t('aboutPageP3Before') }}<strong>{{ t('aboutPageTools') }}</strong
+          >{{ t('aboutPageP3AfterTools') }}
         </p>
 
         <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
           {{ t('aboutPageP4') }}
         </p>
-
-        <p class="about-copy mt-6 text-base leading-8 text-[#f5f5f1]/80 sm:text-lg">
-          {{ t('aboutPageP5') }}
-        </p>
       </section>
 
       <ProjectSlider />
-
-      <ServicesSection />
 
       <ContactPage />
     </main>
@@ -78,7 +68,6 @@ import { useLanguage } from '~/composables/useLanguage'
 import ContactPage from './contact/index.vue'
 import NavbarPage from './navbar/index.vue'
 import ProjectSlider from '../components/ProjectSlider.vue'
-import ServicesSection from '../components/ServicesSection.vue'
 
 const { t } = useLanguage()
 const rotatingWords = computed(() => t('heroWords') as string[])

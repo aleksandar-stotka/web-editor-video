@@ -4,28 +4,20 @@
       <h1>{{ t('aboutPageTitle') }}</h1>
 
       <p>
-        {{ t('aboutPageP1Before') }}<strong>{{ t('aboutPageCinephile') }}</strong
-        >{{ t('aboutPageP1After') }}
+        {{ t('aboutPageP1') }}
       </p>
 
       <p>
-        {{ t('aboutPageP2Before') }}<strong>{{ t('aboutPagePremiere') }}</strong
-        >{{ t('aboutPageP2BetweenPremiereAndAfterEffects') }}<strong>{{ t('aboutPageAfterEffects') }}</strong
-        >{{ t('aboutPageP2BetweenAfterEffectsAndResolve') }}<strong>{{ t('aboutPageResolve') }}</strong
-        >{{ t('aboutPageP2After') }}
+        {{ t('aboutPageP2') }}
       </p>
 
       <p>
-        {{ t('aboutPageP3Before') }}<strong>{{ t('aboutPageProgramming') }}</strong
-        >{{ t('aboutPageP3After') }}
+        {{ t('aboutPageP3Before') }}<strong>{{ t('aboutPageTools') }}</strong
+        >{{ t('aboutPageP3AfterTools') }}
       </p>
 
       <p>
         {{ t('aboutPageP4') }}
-      </p>
-
-      <p>
-        {{ t('aboutPageP5') }}
       </p>
     </div>
   </section>
